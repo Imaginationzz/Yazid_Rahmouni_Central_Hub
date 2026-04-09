@@ -1,6 +1,8 @@
 import { sql, initDb } from '@/lib/db';
 import ArticlesView from '@/components/ArticlesView';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Articles | Yazid Rahmouni Portfolio',
   description: 'A collection of articles and thoughts by Yazid Rahmouni.',

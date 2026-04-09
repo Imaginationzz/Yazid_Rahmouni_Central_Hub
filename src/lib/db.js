@@ -6,6 +6,11 @@ import { sql } from '@vercel/postgres';
  * to ensure the database structure is ready.
  */
 export async function initDb() {
+  if (!process.env.POSTGRES_URL) {
+    console.error('CRITICAL: POSTGRES_URL environment variable is missing.');
+    return;
+  }
+  
   try {
     // Basic tables
     await sql`

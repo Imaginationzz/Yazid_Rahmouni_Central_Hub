@@ -2,6 +2,8 @@ import { sql, initDb } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import ArticleDetailView from '@/components/ArticleDetailView';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }) {
   const { id } = await params;
   await initDb();
