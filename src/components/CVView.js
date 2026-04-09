@@ -47,7 +47,7 @@ export default function CVView({ cv }) {
 
   // Improved section splitting logic
   // Looks for common titles at the beginning of a line, case-insensitive
-  const sectionRegex = /(?:\n|^)\s*(PROFESSIONAL EXPERIENCE|WORK EXPERIENCE|EXPERIENCE|KEY SKILLS|SKILLS|EXPERTISE|PROFILE|SUMMARY|EDUCATION|PROJECTS|CERTIFICATIONS|LANGUAGES|COURSES|ملخص|خبرة|تعليم|مهارات|مشاريع|شهادات|لغات)\b/i;
+  const sectionRegex = /(?:\n|^)\s*(?:<(?:h1|h2|h3|strong|b|span)[^>]*>)?\s*(PROFESSIONAL EXPERIENCE|WORK EXPERIENCE|EXPERIENCE|KEY SKILLS|SKILLS|EXPERTISE|PROFILE|SUMMARY|EDUCATION|PROJECTS|CERTIFICATIONS|LANGUAGES|COURSES|ملخص|خبرة|تعليم|مهارات|مشاريع|شهادات|لغات)\b\s*(?:<\/(?:h1|h2|h3|strong|b|span)>)?/i;
   
   const rawSections = rawText.split(sectionRegex).filter(s => s.trim().length > 0);
   const sections = [];
@@ -103,7 +103,7 @@ export default function CVView({ cv }) {
       <div className="glass-panel cv-header-panel">
         <div className="flex-col items-center gap-2">
             <h1 className="text-gold title-glow cv-name">{headerInfo.name}</h1>
-            <p className="text-secondary cv-subtitle">
+            <p className="text-secondary cv-subtitle" style={{ textAlign: 'center', opacity: 0.8, fontWeight: 600 }}>
                 {cv?.subtitle || t('cv.subtitle') || 'Professional Portfolio'}
             </p>
         </div>
@@ -150,7 +150,9 @@ export default function CVView({ cv }) {
                 {getIcon(section.title)}
                 {section.title}
               </h2>
-              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.8', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '1.05rem' }}
+              <div 
+                className="rich-text-content"
+                style={{ lineHeight: '1.8', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '1.05rem' }}
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             </div>

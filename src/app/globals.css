@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&family=Cairo:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap');
 
 :root {
   --bg-color: #0b0c10;
@@ -18,7 +18,7 @@
 }
 
 [dir="rtl"] {
-  font-family: 'Cairo', sans-serif;
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
 }
 
 body {
@@ -100,9 +100,9 @@ a {
 
 /* Specific CV & Article Responsive Styles */
 .cv-container, .articles-container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .cv-header-panel {
@@ -486,6 +486,62 @@ a {
   animation: fadeIn 0.5s ease-out;
 }
 
+/* Rich Text Content Styling */
+.rich-text-content {
+  color: var(--text-secondary);
+}
+
+.rich-text-content p {
+  margin-bottom: 1.2rem;
+}
+
+.rich-text-content h1, 
+.rich-text-content h2, 
+.rich-text-content h3 {
+  color: var(--gold-accent);
+  margin: 2rem 0 1rem 0;
+  font-family: 'Outfit', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+.rich-text-content ul, 
+.rich-text-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+[dir="rtl"] .rich-text-content ul, 
+[dir="rtl"] .rich-text-content ol {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.rich-text-content li {
+  margin-bottom: 0.5rem;
+}
+
+.rich-text-content blockquote {
+  border-left: 4px solid var(--gold-accent);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+[dir="rtl"] .rich-text-content blockquote {
+  border-left: none;
+  border-right: 4px solid var(--gold-accent);
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.rich-text-content img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border: 1px solid var(--panel-border);
+}
+
 @media print {
   .no-print, nav, footer, .navbar, .btn, .nav-links, button {
     display: none !important;
@@ -527,8 +583,27 @@ a {
   }
 
   .print-content {
-    font-size: 12pt !important;
-    line-height: 1.5 !important;
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
     color: #000 !important;
+  }
+
+  .cv-header-panel {
+    border-top: none !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .skill-tag-grid {
+    display: block !important;
+  }
+
+  .skill-tag-grid span {
+    display: inline-block !important;
+    margin: 2px !important;
+    background: #f0f0f0 !important;
+    border: 1px solid #ccc !important;
+    color: black !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
   }
 }

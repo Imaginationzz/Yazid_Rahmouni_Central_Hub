@@ -216,6 +216,7 @@ export default function ManageCV() {
           <RichTextEditor 
             value={editedText}
             onChange={(newContent) => setEditedText(newContent)}
+            placeholder="Write or paste your CV content here. Use Headers (PROFESSIONAL EXPERIENCE, SKILLS, etc.) to trigger the two-column layout..."
           />
           <p className="text-secondary" style={{ fontSize: '0.8rem' }}>
             Tip: Use clear headings (e.g. WORK EXPERIENCE, SKILLS) for better automated organizing on the public page.

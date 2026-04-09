@@ -6,12 +6,12 @@ import { useMemo, useRef } from 'react';
 // Dynamically import Jodit-React to prevent SSR issues
 const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
-export default function RichTextEditor({ value, onChange }) {
+export default function RichTextEditor({ value, onChange, placeholder = 'Start writing...' }) {
   const editor = useRef(null);
 
   const config = useMemo(() => ({
     readonly: false,
-    placeholder: 'Start writing your article...',
+    placeholder: placeholder,
     height: 500,
     theme: 'dark',
     // Paste settings
@@ -56,12 +56,19 @@ export default function RichTextEditor({ value, onChange }) {
     // Force dark styling for the editor content area
     style: {
       background: '#0d0e12',
-      color: '#f8f9fa'
-    }
-  }), []);
+      color: '#f8f9fa',
+      fontFamily: "'IBM Plex Sans Arabic', 'Inter', sans-serif"
+    },
+    iframeStyle: `
+      html { background: #0d0e12 !important; color: #f8f9fa !important; }
+      body { font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif !important; font-size: 16px !important; line-height: 1.6 !important; }
+      h1, h2, h3, h4 { color: #D4AF37 !important; font-family: 'Outfit', sans-serif !important; }
+      img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    `
+  }), [placeholder]);
 
   return (
-    <div className="rich-text-editor-container" style={{ borderRadius: '8px', overflow: 'hidden' }}>
+    <div className="rich-text-editor-container" style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--panel-border)' }}>
       <JoditEditor
         ref={editor}
         value={value}
