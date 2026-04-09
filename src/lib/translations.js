@@ -46,7 +46,8 @@ const translations = {
       delete: 'Delete',
       confirmDelete: 'Are you sure?',
       saveChanges: 'Save Changes',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      logout: 'Logout'
     },
     articles: {
       title: 'Articles & Thoughts',
@@ -124,7 +125,8 @@ const translations = {
       delete: 'حذف',
       confirmDelete: 'هل أنت متأكد؟',
       saveChanges: 'حفظ التغييرات',
-      cancel: 'إلغاء'
+      cancel: 'إلغاء',
+      logout: 'تسجيل الخروج'
     },
     articles: {
       title: 'المقالات والأفكار',
