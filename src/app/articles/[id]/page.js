@@ -7,11 +7,29 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }) {
   const { id } = await params;
   await initDb();
-  const { rows } = await sql`SELECT title FROM articles WHERE id = ${id}`;
+  const { rows } = await sql`SELECT title, content FROM articles WHERE id = ${id}`;
   const article = rows[0];
   
+  if (!article) return { title: 'Article Not Found' };
+
+  const plainContent = article.content.replace(/<[^>]*>?/gm, '').substring(0, 160);
+
   return {
-    title: `${article?.title || 'Article Not Found'} | Yazid Rahmouni Portfolio`,
+    title: article.title,
+    description: plainContent,
+    openGraph: {
+      title: article.title,
+      description: plainContent,
+      type: 'article',
+      url: `https://yazidrahmouni.com/articles/${id}`,
+      images: ['/logo.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: plainContent,
+      images: ['/logo.png'],
+    }
   };
 }
 

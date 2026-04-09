@@ -172,6 +172,13 @@ a {
   .glass-panel {
     padding: 1.5rem;
   }
+
+  /* Increase touch targets for mobile */
+  .btn, .nav-links a, .filter-chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -181,6 +188,15 @@ a {
   
   .cv-name {
     font-size: 1.8rem;
+  }
+
+  /* Handle small phone notch/home bars */
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .navbar {
+    padding-top: calc(1.5rem + env(safe-area-inset-top));
   }
 }
 
