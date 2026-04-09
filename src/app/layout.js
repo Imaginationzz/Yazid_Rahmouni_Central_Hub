@@ -40,7 +40,12 @@ export const metadata = {
   icons: {
     apple: '/icon_512x512px.png',
   },
+};
+
+export const viewport = {
   themeColor: '#0b0c10',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
