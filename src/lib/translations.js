@@ -6,15 +6,15 @@ const translations = {
       home: 'Home',
       articles: 'Articles',
       projects: 'Projects',
-      cv: 'My CV',
+      cv: 'Resume',
       admin: 'Admin'
     },
     hero: {
       welcome: 'Welcome to my',
       portal: 'Portal',
-      description: "I'm Yazid Rahmouni. This is my central hub where I showcase my articles, professional CV, and web projects.",
+      description: "I'm Yazid Rahmouni. This is my central hub where I showcase my articles, professional Resume, and web projects.",
       btnArticles: 'Read My Articles',
-      btnCV: 'View My CV'
+      btnCV: 'View Resume'
     },
     sections: {
       latestArticles: 'Latest Articles',
@@ -38,7 +38,7 @@ const translations = {
       uploadArticles: 'Upload Articles',
       writeArticle: 'Write Article',
       addProject: 'Add Project',
-      manageCV: 'Manage CV',
+      manageCV: 'Manage Resume',
       stats: 'Content Stats',
       quickActions: 'Quick Actions',
       manage: 'Manage',
@@ -72,10 +72,10 @@ const translations = {
       visit: 'Visit Site'
     },
     cv: {
-      title: 'My CV',
+      title: 'Resume',
       subtitle: 'Full Stack Developer & Technical Writer',
-      download: 'Download CV (PDF)',
-      empty: 'CV content has not been uploaded yet.'
+      download: 'Download Resume (PDF)',
+      empty: 'Resume content has not been uploaded yet.'
     }
   },
   ar: {

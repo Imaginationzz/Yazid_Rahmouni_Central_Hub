@@ -20,7 +20,7 @@ export default function CVView({ cv }) {
   if (!rawText) {
     return (
       <div className="glass-panel text-center py-16 animate-fade-in">
-        <p className="text-secondary italic">{t('cv.empty') || 'No CV content available yet.'}</p>
+        <p className="text-secondary italic">{t('cv.empty') || 'No Resume content available yet.'}</p>
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function CVView({ cv }) {
               <Globe size={14} /> Share
           </button>
           <button onClick={handlePrint} className="btn hover-scale" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', gap: '0.4rem' }}>
-              <Printer size={14} /> Print CV
+              <Printer size={14} /> Print Resume
           </button>
       </div>
 

@@ -4,7 +4,7 @@ import CVView from '@/components/CVView';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'My CV | Yazid Rahmouni Portfolio',
+  title: 'My Resume | Yazid Rahmouni Portfolio',
   description: 'Professional experience, education, and skills of Yazid Rahmouni.',
 };
 

@@ -16,7 +16,7 @@
 }
 
 [data-theme='light'] {
-  --bg-color: #f6f8fa;
+  --bg-color: #eceef0;
   --panel-bg: rgba(255, 255, 255, 0.8);
   --panel-border: rgba(184, 134, 11, 0.12);
   --text-primary: #1a1c20;
