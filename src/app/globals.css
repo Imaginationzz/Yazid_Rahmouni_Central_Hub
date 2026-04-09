@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap');
 
 :root {
+  /* Default Dark Theme Variables */
   --bg-color: #0b0c10;
   --panel-bg: rgba(255, 255, 255, 0.03);
   --panel-border: rgba(212, 175, 55, 0.15);
@@ -8,13 +9,30 @@
   --text-secondary: #a0aab2;
   --gold-accent: #D4AF37;
   --gold-glow: rgba(212, 175, 55, 0.4);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-bg: rgba(11, 12, 16, 0.98);
+  --input-bg: rgba(0, 0, 0, 0.3);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='light'] {
+  --bg-color: #f6f8fa;
+  --panel-bg: rgba(255, 255, 255, 0.8);
+  --panel-border: rgba(184, 134, 11, 0.12);
+  --text-primary: #1a1c20;
+  --text-secondary: #5a6370;
+  --gold-accent: #B8860B;
+  --gold-glow: rgba(184, 134, 11, 0.1);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --input-bg: rgba(0, 0, 0, 0.03);
+  --border-subtle: rgba(0, 0, 0, 0.08);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 [dir="rtl"] {
@@ -320,7 +338,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 3rem;
   background: var(--bg-color);
   position: sticky;
@@ -360,7 +378,7 @@ a {
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: rgba(11, 12, 16, 0.98);
+    background: var(--nav-bg);
     backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
@@ -474,7 +492,7 @@ a {
   margin-bottom: 1.5rem;
 }
 .form-control {
-  background: rgba(0,0,0,0.3);
+  background: var(--input-bg);
   border: 1px solid var(--panel-border);
   color: var(--text-primary);
   padding: 0.75rem;

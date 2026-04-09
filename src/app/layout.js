@@ -1,5 +1,6 @@
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import VisitTracker from '@/components/VisitTracker';
@@ -52,16 +53,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <LanguageProvider>
-          <VisitTracker />
-          <div className="container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <Navbar />
-            <main className="page-wrapper" style={{ flex: 1 }}>
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <VisitTracker />
+            <div className="container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+              <Navbar />
+              <main className="page-wrapper" style={{ flex: 1 }}>
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

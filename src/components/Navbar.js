@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Globe, Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,20 +57,21 @@ export default function Navbar() {
           <li onClick={() => setIsOpen(false)}><Link href="/projects">{t('nav.projects')}</Link></li>
           <li onClick={() => setIsOpen(false)}><Link href="/cv">{t('nav.cv')}</Link></li>
           <li onClick={() => setIsOpen(false)}><Link href="/admin" className="text-gold" style={{ fontWeight: 'bold' }}>{t('nav.admin')}</Link></li>
-          <li className="mobile-only mt-8" style={{ width: '100%' }}>
+          <li className="mobile-only mt-8" style={{ width: '100%', display: 'flex', gap: '1rem' }}>
               <button 
                 onClick={() => { toggleLanguage(); setIsOpen(false); }} 
                 className="btn" 
-                style={{ width: '100%', gap: '0.5rem' }}
+                style={{ flex: 1, gap: '0.5rem' }}
               >
                 <Globe size={16} />
                 {language === 'en' ? 'العربية' : 'English'}
               </button>
+              <ThemeToggle />
           </li>
         </ul>
 
         {/* Desktop Language Switcher */}
-        <div className="navbar-actions">
+        <div className="navbar-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button 
               onClick={toggleLanguage} 
               className="btn" 
@@ -78,6 +80,7 @@ export default function Navbar() {
               <Globe size={16} />
               {language === 'en' ? 'العربية' : 'English'}
             </button>
+            <ThemeToggle />
         </div>
 
         <button className="hamburger" onClick={toggleMenu}>
