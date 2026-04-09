@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -46,16 +47,34 @@ export default function AdminLogin() {
           <p className="text-secondary mt-2">{t('admin.enterCredentials')}</p>
         </div>
         <form onSubmit={handleLogin} className="flex-col gap-4">
-          <div className="form-group">
+          <div className="form-group" style={{ position: 'relative' }}>
             <label className="text-secondary">{t('admin.password')}</label>
             <input 
-              type="password" 
+              type={showPassword ? 'text' : 'password'} 
               className="form-control" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
+              style={{ paddingRight: '40px' }}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                bottom: '10px',
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontSize: '1.2rem',
+                padding: '0'
+              }}
+            >
+              {showPassword ? '👁️‍🗨️' : '👁️'}
+            </button>
           </div>
           {error && <p style={{ color: '#ef4444', fontSize: '0.875rem' }}>{error}</p>}
           <button type="submit" className="btn btn-primary mt-4" disabled={loading}>

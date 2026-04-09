@@ -32,8 +32,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="glass-panel">
-      <h1 className="text-gold title-glow">{t('admin.menu')}</h1>
-      <p className="text-secondary mt-2">{t('admin.enterCredentials')}</p>
+      <h1 className="text-gold title-glow">{t('admin.dashboard')}</h1>
 
       {/* Visit Stats Section */}
       <div style={{ marginTop: '2rem' }}>
@@ -163,9 +162,9 @@ export default function AdminDashboard() {
         <div className="glass-panel" style={{ padding: '1.5rem' }}>
           <h3 className="mb-4">{t('admin.stats')}</h3>
           <ul className="text-secondary" style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <li>{t('nav.articles')}: <span className="text-primary font-bold">{t('admin.dashboard')}</span></li>
-            <li>{t('nav.projects')}: <span className="text-primary font-bold">{t('admin.dashboard')}</span></li>
-            <li>{t('cv.title')}: <span className="text-primary font-bold">{t('admin.dashboard')}</span></li>
+            <li>{t('nav.articles')}: <span className="text-primary font-bold">{stats?.articleCount || 0}</span></li>
+            <li>{t('nav.projects')}: <span className="text-primary font-bold">{stats?.projectCount || 0}</span></li>
+            <li>{t('cv.title')}: <span className="text-primary font-bold">1 {t('admin.manage')}</span></li>
           </ul>
         </div>
         <div className="glass-panel" style={{ padding: '1.5rem' }}>
