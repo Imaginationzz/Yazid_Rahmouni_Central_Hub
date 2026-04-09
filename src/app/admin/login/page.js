@@ -6,25 +6,34 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { t } = useLanguage();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
-    });
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
 
-    if (res.ok) {
-      router.push('/admin');
-      router.refresh();
-    } else {
-      setError(t('admin.invalidPass'));
+      const data = await res.json();
+
+      if (res.ok) {
+        router.push('/admin');
+        router.refresh();
+      } else {
+        setError(data.message || t('admin.invalidPass'));
+      }
+    } catch (err) {
+      setError('Connection failed. Please check your internet.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,7 +57,9 @@ export default function AdminLogin() {
             />
           </div>
           {error && <p style={{ color: '#ef4444', fontSize: '0.875rem' }}>{error}</p>}
-          <button type="submit" className="btn btn-primary mt-4">{t('admin.login')}</button>
+          <button type="submit" className="btn btn-primary mt-4" disabled={loading}>
+            {loading ? 'Logging in...' : t('admin.login')}
+          </button>
         </form>
       </div>
     </div>
