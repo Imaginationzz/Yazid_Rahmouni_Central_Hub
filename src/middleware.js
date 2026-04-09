@@ -6,7 +6,7 @@ export function middleware(request) {
   // Protect /admin routes, but let them go to /admin/login
   if (path.startsWith('/admin') && !path.startsWith('/admin/login')) {
     const token = request.cookies.get('admin_token')?.value;
-    if (token !== 'golden-muslimwings-auth') {
+    if (token !== process.env.ADMIN_PASSWORD) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
