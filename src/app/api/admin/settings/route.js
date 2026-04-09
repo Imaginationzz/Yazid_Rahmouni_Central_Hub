@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const db = getDb();
-    const rows = db.prepare('SELECT key, value FROM site_settings').all();
+    await initDb();
+    const { rows } = await sql`SELECT key, value FROM site_settings`;
     const settings = {};
     for (const row of rows) {
       settings[row.key] = row.value;
@@ -19,25 +19,25 @@ export async function GET() {
 export async function POST(req) {
   try {
     const data = await req.json();
-    const db = getDb();
+    await initDb();
 
-    const upsert = db.prepare(`
-      INSERT INTO site_settings (key, value, updated_at)
-      VALUES (?, ?, CURRENT_TIMESTAMP)
-      ON CONFLICT(key) DO UPDATE SET 
-        value = excluded.value,
-        updated_at = CURRENT_TIMESTAMP
-    `);
-
-    const transaction = db.transaction((entries) => {
-      for (const [key, value] of entries) {
-        if (value !== undefined && value !== null) {
-          upsert.run(key, value);
-        }
+    // In Postgres, we'll run upserts for each key-value pair.
+    // For large operations, we'd use a transaction or a single unnest query,
+    // but for settings, a simple loop with Promise.all is sufficient.
+    const entries = Object.entries(data);
+    
+    await Promise.all(entries.map(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        return sql`
+          INSERT INTO site_settings (key, value, updated_at)
+          VALUES (${key}, ${value}, CURRENT_TIMESTAMP)
+          ON CONFLICT(key) DO UPDATE SET 
+            value = EXCLUDED.value,
+            updated_at = CURRENT_TIMESTAMP
+        `;
       }
-    });
-
-    transaction(Object.entries(data));
+      return Promise.resolve();
+    }));
 
     return NextResponse.json({ success: true, message: 'Settings saved successfully' });
   } catch (error) {

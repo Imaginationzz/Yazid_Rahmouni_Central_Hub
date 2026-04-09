@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 
 export async function GET(req, { params }) {
   try {
     const { id } = await params;
-    const db = getDb();
-    const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(id);
+    await initDb();
+    const { rows } = await sql`SELECT * FROM articles WHERE id = ${id}`;
+    const article = rows[0];
     
     if (!article) {
       return NextResponse.json({ error: 'Article not found' }, { status: 404 });
@@ -13,6 +14,7 @@ export async function GET(req, { params }) {
     
     return NextResponse.json(article);
   } catch (error) {
+    console.error('Fetch Article Error:', error);
     return NextResponse.json({ error: 'Failed to fetch article' }, { status: 500 });
   }
 }
@@ -26,15 +28,20 @@ export async function PATCH(req, { params }) {
       return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
     }
 
-    const db = getDb();
-    const result = db.prepare('UPDATE articles SET title = ?, content = ?, category = ? WHERE id = ?').run(title, content, category, id);
+    await initDb();
+    const result = await sql`
+      UPDATE articles 
+      SET title = ${title}, content = ${content}, category = ${category || null} 
+      WHERE id = ${id}
+    `;
     
-    if (result.changes === 0) {
+    if (result.rowCount === 0) {
       return NextResponse.json({ error: 'Article not found' }, { status: 404 });
     }
     
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Update Article Error:', error);
     return NextResponse.json({ error: 'Failed to update article' }, { status: 500 });
   }
 }
@@ -44,11 +51,11 @@ export async function DELETE(req, { params }) {
     const { id } = await params;
     console.log(`Server: Received DELETE request for article ID: ${id}`);
     
-    const db = getDb();
-    const result = db.prepare('DELETE FROM articles WHERE id = ?').run(id);
-    console.log(`Server: Database delete result. Changes: ${result.changes}`);
+    await initDb();
+    const result = await sql`DELETE FROM articles WHERE id = ${id}`;
+    console.log(`Server: Database delete result. RowCount: ${result.rowCount}`);
     
-    if (result.changes === 0) {
+    if (result.rowCount === 0) {
       console.warn(`Server: Article with ID ${id} not found for deletion`);
       return NextResponse.json({ error: 'Article not found' }, { status: 404 });
     }

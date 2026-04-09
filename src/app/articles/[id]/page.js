@@ -1,11 +1,12 @@
-import { getDb } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import ArticleDetailView from '@/components/ArticleDetailView';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const db = getDb();
-  const article = db.prepare('SELECT title FROM articles WHERE id = ?').get(id);
+  await initDb();
+  const { rows } = await sql`SELECT title FROM articles WHERE id = ${id}`;
+  const article = rows[0];
   
   return {
     title: `${article?.title || 'Article Not Found'} | Yazid Rahmouni Portfolio`,
@@ -14,8 +15,9 @@ export async function generateMetadata({ params }) {
 
 export default async function ArticleDetailPage({ params }) {
   const { id } = await params;
-  const db = getDb();
-  const article = db.prepare('SELECT title, content, category, created_at FROM articles WHERE id = ?').get(id);
+  await initDb();
+  const { rows } = await sql`SELECT title, content, category, created_at FROM articles WHERE id = ${id}`;
+  const article = rows[0];
 
   if (!article) {
     notFound();

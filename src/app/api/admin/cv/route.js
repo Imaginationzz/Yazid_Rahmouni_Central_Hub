@@ -1,34 +1,35 @@
 import { NextResponse } from 'next/server';
 import mammoth from 'mammoth';
-import { getDb } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 
 export async function GET(req) {
   try {
-    const db = getDb();
-    const cv = db.prepare('SELECT raw_text, updated_at FROM cv_content ORDER BY updated_at DESC LIMIT 1').get();
-    return NextResponse.json(cv || { raw_text: '' });
+    await initDb();
+    const { rows } = await sql`SELECT raw_text, subtitle, updated_at FROM cv_content ORDER BY updated_at DESC LIMIT 1`;
+    return NextResponse.json(rows[0] || { raw_text: '' });
   } catch (error) {
+    console.error('CV Fetch Error:', error);
     return NextResponse.json({ error: 'Failed to fetch CV' }, { status: 500 });
   }
 }
 
 export async function POST(request) {
   try {
-    const db = getDb();
+    await initDb();
     const contentType = request.headers.get('content-type') || '';
 
     if (contentType.includes('application/json')) {
       const { text, subtitle } = await request.json();
       if (!text) return NextResponse.json({ error: 'Text content is required' }, { status: 400 });
 
-      db.prepare(`
+      await sql`
         INSERT INTO cv_content (id, raw_text, subtitle, updated_at)
-        VALUES (1, ?, ?, CURRENT_TIMESTAMP)
+        VALUES (1, ${text}, ${subtitle || null}, CURRENT_TIMESTAMP)
         ON CONFLICT(id) DO UPDATE SET 
-          raw_text = excluded.raw_text,
-          subtitle = COALESCE(excluded.subtitle, subtitle),
+          raw_text = EXCLUDED.raw_text,
+          subtitle = COALESCE(EXCLUDED.subtitle, cv_content.subtitle),
           updated_at = CURRENT_TIMESTAMP
-      `).run(text, subtitle || null);
+      `;
 
       return NextResponse.json({ success: true, message: 'CV text updated manually' });
     }
@@ -57,13 +58,13 @@ export async function POST(request) {
     }
 
     // Save to DB
-    db.prepare(`
+    await sql`
       INSERT INTO cv_content (id, raw_text, updated_at)
-      VALUES (1, ?, CURRENT_TIMESTAMP)
+      VALUES (1, ${extractedText}, CURRENT_TIMESTAMP)
       ON CONFLICT(id) DO UPDATE SET 
-        raw_text = excluded.raw_text,
+        raw_text = EXCLUDED.raw_text,
         updated_at = CURRENT_TIMESTAMP
-    `).run(extractedText);
+    `;
 
     return NextResponse.json({ success: true, text: extractedText });
   } catch (err) {

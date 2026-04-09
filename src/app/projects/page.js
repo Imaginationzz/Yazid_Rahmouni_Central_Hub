@@ -1,4 +1,4 @@
-import { getDb } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 import ProjectsView from '@/components/ProjectsView';
 
 export const metadata = {
@@ -6,9 +6,9 @@ export const metadata = {
   description: 'A showcase of web applications and projects developed by Yazid Rahmouni.',
 };
 
-export default function ProjectsPage() {
-  const db = getDb();
-  const projects = db.prepare('SELECT * FROM projects ORDER BY created_at DESC').all();
+export default async function ProjectsPage() {
+  await initDb();
+  const { rows: projects } = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
 
   return <ProjectsView projects={projects} />;
 }

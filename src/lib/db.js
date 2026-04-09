@@ -1,75 +1,73 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-import fs from 'fs';
+import { sql } from '@vercel/postgres';
 
-// Local dev only: path to db file
-const dbPath = path.resolve(process.cwd(), 'portfolio.db');
+/**
+ * Initializes the Postgres database schema if it doesn't exist.
+ * This should be called in API routes or server components that need 
+ * to ensure the database structure is ready.
+ */
+export async function initDb() {
+  try {
+    // Basic tables
+    await sql`
+      CREATE TABLE IF NOT EXISTS articles (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        category TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
 
-export function getDb() {
-  const db = new Database(dbPath);
-  
-  // Initialize tables if they don't exist
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS articles (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      content TEXT NOT NULL,
-      category TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    await sql`
+      CREATE TABLE IF NOT EXISTS projects (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        url TEXT,
+        description TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
 
-    CREATE TABLE IF NOT EXISTS projects (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      url TEXT,
-      description TEXT NOT NULL,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    await sql`
+      CREATE TABLE IF NOT EXISTS cv_content (
+        id SERIAL PRIMARY KEY,
+        raw_text TEXT NOT NULL,
+        subtitle TEXT,
+        file_data BYTEA,
+        filename TEXT,
+        file_type TEXT,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
 
-    CREATE TABLE IF NOT EXISTS cv_content (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      raw_text TEXT NOT NULL,
-      subtitle TEXT,
-      file_data BLOB,
-      filename TEXT,
-      file_type TEXT,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_settings (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
 
-    CREATE TABLE IF NOT EXISTS site_settings (
-      key TEXT PRIMARY KEY,
-      value TEXT NOT NULL,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    await sql`
+      CREATE TABLE IF NOT EXISTS visits (
+        id SERIAL PRIMARY KEY,
+        path TEXT NOT NULL,
+        user_agent TEXT,
+        referrer TEXT,
+        visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
 
-    CREATE TABLE IF NOT EXISTS visits (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      path TEXT NOT NULL,
-      user_agent TEXT,
-      referrer TEXT,
-      visited_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-  `);
+    // Ensure site_settings key column exists (it's the primary key)
+    // Note: In Postgres, migrations are best handled via dedicated scripts,
+    // but for this simple app, we check columns using information_schema if needed.
 
-  // Migration: Add columns if table existed before
-  const tableInfo = db.prepare("PRAGMA table_info(cv_content)").all();
-  const hasSubtitle = tableInfo.some(col => col.name === 'subtitle');
-  if (!hasSubtitle) {
-    try { db.exec(`ALTER TABLE cv_content ADD COLUMN subtitle TEXT;`); } catch(e){}
+    return true;
+  } catch (error) {
+    console.error('Database Initialization Error:', error);
+    throw error;
   }
-  const hasFileData = tableInfo.some(col => col.name === 'file_data');
-  if (!hasFileData) {
-    try { db.exec(`ALTER TABLE cv_content ADD COLUMN file_data BLOB;`); } catch(e){}
-    try { db.exec(`ALTER TABLE cv_content ADD COLUMN filename TEXT;`); } catch(e){}
-    try { db.exec(`ALTER TABLE cv_content ADD COLUMN file_type TEXT;`); } catch(e){}
-  }
-
-  // Migration for articles: Add category column
-  const articleTableInfo = db.prepare("PRAGMA table_info(articles)").all();
-  const hasCategory = articleTableInfo.some(col => col.name === 'category');
-  if (!hasCategory) {
-    try { db.exec(`ALTER TABLE articles ADD COLUMN category TEXT;`); } catch(e){}
-  }
-
-  return db;
 }
+
+// Export the sql helper for use in other files
+export { sql };
