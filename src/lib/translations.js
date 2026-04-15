@@ -6,23 +6,23 @@ const translations = {
       home: 'Home',
       articles: 'Articles',
       projects: 'Projects',
-      cv: 'Resume',
+      services: 'Services',
       admin: 'Admin'
     },
     hero: {
       welcome: 'Welcome to my',
       portal: 'Portal',
-      description: "I'm Yazid Rahmouni. This is my central hub where I showcase my articles, professional Resume, and web projects.",
+      description: "I'm Yazid Rahmouni. This is my central hub where I showcase my articles, professional services, and web projects.",
       btnArticles: 'Read My Articles',
-      btnCV: 'View Resume'
+      btnServices: 'View Services'
     },
     sections: {
       latestArticles: 'Latest Articles',
       browseArticles: 'Browse Articles',
       webProjects: 'Web Projects',
       seeProjects: 'See Projects',
-      mySkills: 'My Skills',
-      viewSkills: 'View Skills'
+      myServices: 'My Services',
+      viewServices: 'View Services'
     },
     footer: {
       rights: 'All rights reserved.'
@@ -38,7 +38,7 @@ const translations = {
       uploadArticles: 'Upload Articles',
       writeArticle: 'Write Article',
       addProject: 'Add Project',
-      manageCV: 'Manage Resume',
+      manageServices: 'Manage Services',
       stats: 'Content Stats',
       quickActions: 'Quick Actions',
       manage: 'Manage',
@@ -71,11 +71,10 @@ const translations = {
       empty: 'No projects have been listed yet. Check back soon!',
       visit: 'Visit Site'
     },
-    cv: {
-      title: 'Resume',
-      subtitle: 'Full Stack Developer & Technical Writer',
-      download: 'Download Resume (PDF)',
-      empty: 'Resume content has not been uploaded yet.'
+    services: {
+      title: 'Professional Services',
+      subtitle: 'Modern solutions for your digital needs.',
+      empty: 'Service details are being updated. Check back soon!'
     }
   },
   ar: {
@@ -85,23 +84,23 @@ const translations = {
       home: 'الرئيسية',
       articles: 'المقالات',
       projects: 'المشاريع',
-      cv: 'سيرتي الذاتية',
+      services: 'الخدمات',
       admin: 'الإدارة'
     },
     hero: {
       welcome: 'مرحباً بكم في',
       portal: 'بوابتي',
-      description: 'أنا يزيد رحموني. هذا هو مركزي الرئيسي حيث أعرض مقالاتي وسيرتي الذاتية المهنية ومشاريع الويب الخاصة بي.',
+      description: 'أنا يزيد رحموني. هذا هو مركزي الرئيسي حيث أعرض مقالاتي وخدماتي المهنية ومشاريع الويب الخاصة بي.',
       btnArticles: 'اقرأ مقالاتي',
-      btnCV: 'عرض السيرة الذاتية'
+      btnServices: 'عرض الخدمات'
     },
     sections: {
       latestArticles: 'أحدث المقالات',
       browseArticles: 'تصفح المقالات',
       webProjects: 'مشاريع الويب',
       seeProjects: 'مشاهدة المشاريع',
-      mySkills: 'مهاراتي',
-      viewSkills: 'عرض المهارات'
+      myServices: 'خدماتي',
+      viewServices: 'عرض الخدمات'
     },
     footer: {
       rights: 'جميع الحقوق محفوظة.'
@@ -117,7 +116,7 @@ const translations = {
       uploadArticles: 'رفع مقالات',
       writeArticle: 'كتابة مقال',
       addProject: 'إضافة مشروع',
-      manageCV: 'إدارة السيرة الذاتية',
+      manageServices: 'إدارة الخدمات',
       stats: 'إحصائيات المحتوى',
       quickActions: 'إجراءات سريعة',
       manage: 'إدارة',
@@ -150,11 +149,10 @@ const translations = {
       empty: 'لم يتم إدراج أي مشاريع بعد. تفقدنا قريباً!',
       visit: 'زيارة الموقع'
     },
-    cv: {
-      title: 'سيرتي الذاتية',
-      subtitle: 'مطور ويب كامل وكاتب تقني',
-      download: 'تحميل السيرة الذاتية (PDF)',
-      empty: 'لم يتم رفع محتوى السيرة الذاتية بعد.'
+    services: {
+      title: 'الخدمات المهنية',
+      subtitle: 'حلول حديثة لاحتياجاتك الرقمية.',
+      empty: 'يتم تحديث تفاصيل الخدمات حالياً. تفقدنا قريباً!'
     }
   }
 };

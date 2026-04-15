@@ -50,8 +50,8 @@ export default function Home() {
           <Link href="/articles" className="btn btn-primary">
             {s('hero_btn1_en', 'hero_btn1_ar', t('hero.btnArticles'))}
           </Link>
-          <Link href="/cv" className="btn">
-            {s('hero_btn2_en', 'hero_btn2_ar', t('hero.btnCV'))}
+          <Link href="/services" className="btn">
+            {s('hero_btn2_en', 'hero_btn2_ar', t('hero.btnServices'))}
           </Link>
         </div>
       </section>
@@ -72,11 +72,11 @@ export default function Home() {
             {s('card2_link_en', 'card2_link_ar', t('sections.seeProjects'))} &rarr;
           </Link>
         </div>
-        <div className="glass-panel">
-          <h2 className="text-gold mb-4">{s('card3_title_en', 'card3_title_ar', t('sections.mySkills'))}</h2>
-          <p className="text-secondary mb-4">{s('card3_text_en', 'card3_text_ar', t('cv.subtitle'))}</p>
-          <Link href="/cv" className="text-gold" style={{ textDecoration: 'underline' }}>
-            {s('card3_link_en', 'card3_link_ar', t('sections.viewSkills'))} &rarr;
+        <div className="glass-panel text-center flex-col items-center">
+          <h2 className="text-gold mb-4">{s('card3_title_en', 'card3_title_ar', t('sections.myServices'))}</h2>
+          <p className="text-secondary mb-4">{s('card3_text_en', 'card3_text_ar', t('services.subtitle'))}</p>
+          <Link href="/services" className="text-gold" style={{ textDecoration: 'underline' }}>
+            {s('card3_link_en', 'card3_link_ar', t('sections.viewServices'))} &rarr;
           </Link>
         </div>
       </section>

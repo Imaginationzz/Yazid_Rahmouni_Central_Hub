@@ -30,7 +30,7 @@ export default function AdminLayout({ children }) {
           <Link href="/admin/articles/upload" className="text-secondary" style={{ textDecoration: 'none' }}>{t('admin.uploadArticles')}</Link>
           <Link href="/admin/articles/new" className="text-secondary" style={{ textDecoration: 'none' }}>{t('admin.writeArticle')}</Link>
           <Link href="/admin/projects/new" className="text-secondary" style={{ textDecoration: 'none' }}>{t('admin.addProject')}</Link>
-          <Link href="/admin/cv" className="text-secondary" style={{ textDecoration: 'none' }}>{t('admin.manageCV')}</Link>
+          <Link href="/admin/services" className="text-secondary" style={{ textDecoration: 'none' }}>{t('admin.manageServices')}</Link>
           <Link href="/admin/site" className="text-secondary" style={{ textDecoration: 'none' }}>✏️ Edit Site Content</Link>
           
           <button 

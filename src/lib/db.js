@@ -46,6 +46,20 @@ export async function initDb() {
     `;
 
     await sql`
+      CREATE TABLE IF NOT EXISTS services (
+        id SERIAL PRIMARY KEY,
+        title_en TEXT NOT NULL,
+        title_ar TEXT NOT NULL,
+        description_en TEXT NOT NULL,
+        description_ar TEXT NOT NULL,
+        icon TEXT,
+        url TEXT,
+        order_index INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
+    await sql`
       CREATE TABLE IF NOT EXISTS site_settings (
         key TEXT PRIMARY KEY,
         value TEXT NOT NULL,

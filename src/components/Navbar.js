@@ -55,7 +55,7 @@ export default function Navbar() {
           <li onClick={() => setIsOpen(false)}><Link href="/">{t('nav.home')}</Link></li>
           <li onClick={() => setIsOpen(false)}><Link href="/articles">{t('nav.articles')}</Link></li>
           <li onClick={() => setIsOpen(false)}><Link href="/projects">{t('nav.projects')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/cv">{t('nav.cv')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/services">{t('nav.services')}</Link></li>
           <li onClick={() => setIsOpen(false)}><Link href="/admin" className="text-gold" style={{ fontWeight: 'bold' }}>{t('nav.admin')}</Link></li>
           <li className="mobile-only mt-8" style={{ width: '100%', display: 'flex', gap: '1rem' }}>
               <button 

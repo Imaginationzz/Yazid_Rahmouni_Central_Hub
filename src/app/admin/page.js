@@ -164,7 +164,7 @@ export default function AdminDashboard() {
           <ul className="text-secondary" style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <li>{t('nav.articles')}: <span className="text-primary font-bold">{stats?.articleCount || 0}</span></li>
             <li>{t('nav.projects')}: <span className="text-primary font-bold">{stats?.projectCount || 0}</span></li>
-            <li>{t('cv.title')}: <span className="text-primary font-bold">1 {t('admin.manage')}</span></li>
+            <li>{t('services.title')}: <span className="text-primary font-bold">{stats?.serviceCount || 0} {t('admin.manage')}</span></li>
           </ul>
         </div>
         <div className="glass-panel" style={{ padding: '1.5rem' }}>

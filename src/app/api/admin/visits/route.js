@@ -32,6 +32,11 @@ export async function GET() {
       ORDER BY day ASC
     `;
 
+    // Content counts
+    const articleCount = await sql`SELECT COUNT(*) as count FROM articles`;
+    const projectCount = await sql`SELECT COUNT(*) as count FROM projects`;
+    const serviceCount = await sql`SELECT COUNT(*) as count FROM services`;
+
     return NextResponse.json({
       total: parseInt(totalRes.rows[0].count),
       today: parseInt(todayRes.rows[0].count),
@@ -39,6 +44,9 @@ export async function GET() {
       last30: parseInt(last30Res.rows[0].count),
       topPages: topPagesRes.rows.map(r => ({ ...r, count: parseInt(r.count) })),
       dailyVisits: dailyVisitsRes.rows.map(r => ({ ...r, count: parseInt(r.count) })),
+      articleCount: parseInt(articleCount.rows[0].count),
+      projectCount: parseInt(projectCount.rows[0].count),
+      serviceCount: parseInt(serviceCount.rows[0].count),
     });
   } catch (err) {
     console.error('Visit stats error:', err);
