@@ -7,6 +7,7 @@ const translations = {
       articles: 'Articles',
       projects: 'Projects',
       services: 'Services',
+      contact: 'Contact',
       admin: 'Admin'
     },
     hero: {
@@ -75,6 +76,13 @@ const translations = {
       title: 'Professional Services',
       subtitle: 'Modern solutions for your digital needs.',
       empty: 'Service details are being updated. Check back soon!'
+    },
+    contact: {
+      title: 'Contact Me',
+      subtitle: "Let's build something amazing together.",
+      email: 'Email',
+      phone: 'Phone',
+      getInTouch: 'Get in Touch'
     }
   },
   ar: {
@@ -85,6 +93,7 @@ const translations = {
       articles: 'المقالات',
       projects: 'المشاريع',
       services: 'الخدمات',
+      contact: 'تواصل معي',
       admin: 'الإدارة'
     },
     hero: {
@@ -153,6 +162,13 @@ const translations = {
       title: 'الخدمات المهنية',
       subtitle: 'حلول حديثة لاحتياجاتك الرقمية.',
       empty: 'يتم تحديث تفاصيل الخدمات حالياً. تفقدنا قريباً!'
+    },
+    contact: {
+      title: 'تواصل معي',
+      subtitle: 'لنقم ببناء شيء رائع معاً.',
+      email: 'البريد الإلكتروني',
+      phone: 'الهاتف',
+      getInTouch: 'اتصل بنا'
     }
   }
 };
