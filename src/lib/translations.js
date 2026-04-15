@@ -10,9 +10,9 @@ const translations = {
       admin: 'Admin'
     },
     hero: {
-      welcome: 'Welcome to my',
-      portal: 'Portal',
-      description: "I'm Yazid Rahmouni. This is my central hub where I showcase my articles, professional services, and web projects.",
+      welcome: 'MuslimWings —',
+      portal: 'Ideas That Take Flight',
+      description: "Discover my articles, portfolio, projects and collections of books.",
       btnArticles: 'Read My Articles',
       btnServices: 'View Services'
     },
@@ -88,9 +88,9 @@ const translations = {
       admin: 'الإدارة'
     },
     hero: {
-      welcome: 'مرحباً بكم في',
-      portal: 'بوابتي',
-      description: 'أنا يزيد رحموني. هذا هو مركزي الرئيسي حيث أعرض مقالاتي وخدماتي المهنية ومشاريع الويب الخاصة بي.',
+      welcome: 'MuslimWings —',
+      portal: 'أفكار تحلق عالياً',
+      description: 'اكتشف مقالاتي، مهاراتي، مشاريعي ومجموعات كتبي.',
       btnArticles: 'اقرأ مقالاتي',
       btnServices: 'عرض الخدمات'
     },
