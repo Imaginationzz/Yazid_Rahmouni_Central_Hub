@@ -39,10 +39,10 @@ export default function Navbar() {
         <img src="/logo.png" alt="Logo" width="45" height="45" style={{ objectFit: 'contain' }} />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <span className="text-gold" style={{ fontSize: '1.25rem', fontWeight: 700 }}>
-            {s('site_title_en', 'site_title_ar', t('siteTitle'))}
+            {t('siteTitle')}
           </span>
           <span className="text-secondary" style={{ fontSize: '0.85rem' }}>
-            {s('site_subtitle_en', 'site_subtitle_ar', t('siteSubtitle'))}
+            {t('siteSubtitle')}
           </span>
         </div>
       </Link>

@@ -1,7 +1,7 @@
 const translations = {
   en: {
-    siteTitle: 'Yazid Rahmouni',
-    siteSubtitle: 'Personal Portal',
+    siteTitle: 'MuslimWings',
+    siteSubtitle: 'Ideas That Take Flight',
     nav: {
       home: 'Home',
       articles: 'Articles',
@@ -78,8 +78,8 @@ const translations = {
     }
   },
   ar: {
-    siteTitle: 'يزيد رحموني',
-    siteSubtitle: 'البوابة الشخصية',
+    siteTitle: 'MuslimWings',
+    siteSubtitle: 'أفكار تحلق عالياً',
     nav: {
       home: 'الرئيسية',
       articles: 'المقالات',

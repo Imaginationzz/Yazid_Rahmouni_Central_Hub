@@ -35,12 +35,12 @@ export default function Home() {
       <section className="glass-panel text-center flex-col items-center gap-4 mt-8">
         <img src="/logo.png" alt="Logo" width="100" style={{ marginBottom: '1rem' }} />
         <h1 className="title-glow hero-title" style={{ color: 'var(--text-primary)' }}>
-          {s('hero_welcome_en', 'hero_welcome_ar', t('hero.welcome'))}{' '}
-          <span className="text-gold">{s('hero_portal_en', 'hero_portal_ar', t('hero.portal'))}</span>
+          {t('hero.welcome')}{' '}
+          <span className="text-gold">{t('hero.portal')}</span>
         </h1>
         {/* Hero description: render as HTML if it contains tags, else plain text */}
         {(() => {
-          const desc = s('hero_description_en', 'hero_description_ar', t('hero.description'));
+          const desc = t('hero.description');
           if (desc && desc.includes('<')) {
             return <div className="text-secondary hero-description" dangerouslySetInnerHTML={{ __html: desc }} />;
           }
@@ -73,10 +73,10 @@ export default function Home() {
           </Link>
         </div>
         <div className="glass-panel text-center flex-col items-center">
-          <h2 className="text-gold mb-4">{s('card3_title_en', 'card3_title_ar', t('sections.myServices'))}</h2>
-          <p className="text-secondary mb-4">{s('card3_text_en', 'card3_text_ar', t('services.subtitle'))}</p>
+          <h2 className="text-gold mb-4">{t('sections.myServices')}</h2>
+          <p className="text-secondary mb-4">{t('services.subtitle')}</p>
           <Link href="/services" className="text-gold" style={{ textDecoration: 'underline' }}>
-            {s('card3_link_en', 'card3_link_ar', t('sections.viewServices'))} &rarr;
+            {t('sections.viewServices')} &rarr;
           </Link>
         </div>
       </section>
