@@ -4,7 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function ContactPage() {
-  const { t, language } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
 
   return (
     <div className="flex-col gap-8 w-full">
