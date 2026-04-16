@@ -82,7 +82,8 @@ const translations = {
       subtitle: "Let's build something amazing together.",
       email: 'Email',
       phone: 'Phone',
-      getInTouch: 'Get in Touch'
+      getInTouch: 'Get in Touch',
+      ctaDescription: "Whether you have a question about services, projects, or anything else, I'm ready to answer all your questions."
     }
   },
   ar: {
@@ -168,7 +169,8 @@ const translations = {
       subtitle: 'لنقم ببناء شيء رائع معاً.',
       email: 'البريد الإلكتروني',
       phone: 'الهاتف',
-      getInTouch: 'اتصل بنا'
+      getInTouch: 'تواصل معي',
+      ctaDescription: 'سواء كان لديك سؤال حول الخدمات أو المشاريع أو أي شيء آخر، فأنا جاهز للإجابة على جميع استفساراتك.'
     }
   }
 };
