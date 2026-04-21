@@ -27,13 +27,15 @@ export default function AdminLogin() {
       const data = await res.json();
 
       if (res.ok) {
+        console.log('Login successful, redirecting...');
         router.push('/admin');
         router.refresh();
       } else {
         setError(data.message || t('admin.invalidPass'));
       }
     } catch (err) {
-      setError('Connection failed. Please check your internet.');
+      console.error('Login error:', err);
+      setError('Connection failed or server error. Please check your console.');
     } finally {
       setLoading(false);
     }

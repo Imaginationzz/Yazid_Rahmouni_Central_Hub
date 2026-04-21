@@ -8,12 +8,17 @@ export function middleware(request) {
     const adminPassword = process.env.ADMIN_PASSWORD;
     
     if (!adminPassword) {
-      console.error('MIDDLEWARE ERROR: ADMIN_PASSWORD environment variable is not defined.');
-      return NextResponse.next(); // Don't block if we can't verify (or redirect to error)
+      console.error('[MIDDLEWARE ERROR] ADMIN_PASSWORD environment variable is not defined.');
+      return NextResponse.next(); 
     }
 
     const token = request.cookies.get('admin_token')?.value;
-    if (token?.trim() !== adminPassword.trim()) {
+    
+    // DEBUG LOG
+    console.log(`[MIDDLEWARE DEBUG] Path: ${path}, Cookie Present: ${!!token}, Match: ${token?.trim() === adminPassword.trim()}`);
+
+    if (!token || token.trim() !== adminPassword.trim()) {
+      console.warn(`[MIDDLEWARE AUTH FAIL] Redirecting to /admin/login. Token: ${token ? 'Mismatch' : 'Missing'}`);
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
