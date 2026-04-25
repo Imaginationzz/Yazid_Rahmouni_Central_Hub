@@ -35,7 +35,11 @@ export default function ThemeToggle() {
       }}
       aria-label="Toggle Theme"
     >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {theme === 'dark' ? (
+        <Sun size={20} style={{ transition: 'transform 0.5s ease', transform: 'rotate(0)' }} />
+      ) : (
+        <Moon size={20} style={{ transition: 'transform 0.5s ease', transform: 'rotate(360deg)' }} />
+      )}
     </button>
   );
 }

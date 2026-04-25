@@ -34,14 +34,30 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="navbar">
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <img src="/logo.png" alt="Logo" width="45" height="45" style={{ objectFit: 'contain' }} />
+    <header className="navbar" style={{ 
+      background: 'var(--nav-bg)', 
+      backdropFilter: 'blur(20px)', 
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: '1px solid var(--panel-border)',
+      padding: '1rem 0'
+    }}>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', transition: 'var(--transition)' }} className="hover-scale">
+        <div style={{ 
+          background: 'rgba(212, 175, 55, 0.1)', 
+          padding: '5px', 
+          borderRadius: '12px',
+          border: '1px solid var(--panel-border)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img src="/logo.png" alt="Logo" width="40" height="40" style={{ objectFit: 'contain' }} />
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span className="text-gold" style={{ fontSize: '1.25rem', fontWeight: 700 }}>
+          <span className="text-gold" style={{ fontSize: '1.4rem', fontWeight: 800, letterSpacing: '-0.5px', lineHeight: 1.1 }}>
             {t('siteTitle')}
           </span>
-          <span className="text-secondary" style={{ fontSize: '0.85rem' }}>
+          <span className="text-secondary" style={{ fontSize: '0.75rem', fontWeight: 500, opacity: 0.8 }}>
             {t('siteSubtitle')}
           </span>
         </div>
@@ -52,12 +68,12 @@ export default function Navbar() {
           <li className="mobile-only" style={{ width: '100%', marginBottom: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
              <button onClick={toggleMenu} className="text-gold"><X size={32} /></button>
           </li>
-          <li onClick={() => setIsOpen(false)}><Link href="/">{t('nav.home')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/articles">{t('nav.articles')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/projects">{t('nav.projects')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/services">{t('nav.services')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/contact">{t('nav.contact')}</Link></li>
-          <li onClick={() => setIsOpen(false)}><Link href="/admin" className="text-gold" style={{ fontWeight: 'bold' }}>{t('nav.admin')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/" className="nav-item">{t('nav.home')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/articles" className="nav-item">{t('nav.articles')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/projects" className="nav-item">{t('nav.projects')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/services" className="nav-item">{t('nav.services')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/contact" className="nav-item">{t('nav.contact')}</Link></li>
+          <li onClick={() => setIsOpen(false)}><Link href="/admin" className="text-gold nav-item" style={{ fontWeight: 800 }}>{t('nav.admin')}</Link></li>
           <li className="mobile-only mt-8" style={{ width: '100%', display: 'flex', gap: '1rem' }}>
               <button 
                 onClick={() => { toggleLanguage(); setIsOpen(false); }} 

@@ -88,51 +88,52 @@ export default function CVView({ cv }) {
   };
 
   return (
-    <div className="flex-col gap-8 animate-fade-in print-container cv-container">
+    <div className="flex-col gap-10 animate-fade-up print-container cv-container">
       {/* Print/Share Actions */}
-      <div className="flex justify-end gap-3 no-print mb-4 flex-wrap">
-          <button onClick={handleShare} className="btn hover-scale" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', gap: '0.4rem' }}>
+      <div className="flex justify-end gap-3 no-print mb-4 flex-wrap animate-fade-up stagger-1">
+          <button onClick={handleShare} className="btn" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', gap: '0.4rem' }}>
               <Globe size={14} /> Share
           </button>
-          <button onClick={handlePrint} className="btn hover-scale" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', gap: '0.4rem' }}>
+          <button onClick={handlePrint} className="btn" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', gap: '0.4rem' }}>
               <Printer size={14} /> Print Resume
           </button>
       </div>
 
       {/* Header Profile Section */}
-      <div className="glass-panel cv-header-panel">
-        <div className="flex-col items-center gap-2">
-            <h1 className="text-gold title-glow cv-name">{headerInfo.name}</h1>
-            <p className="text-secondary cv-subtitle" style={{ textAlign: 'center', opacity: 0.8, fontWeight: 600 }}>
+      <div className="glass-panel cv-header-panel animate-fade-up stagger-1" style={{ padding: '4rem 2rem' }}>
+        <div className="flex-col items-center gap-4">
+            <h1 className="text-gold title-glow cv-name" style={{ fontSize: '4.5rem', letterSpacing: '-2px' }}>{headerInfo.name}</h1>
+            <div style={{ height: '2px', width: '60px', background: 'var(--gold-accent)', margin: '0.5rem 0' }} />
+            <p className="text-secondary cv-subtitle" style={{ textAlign: 'center', opacity: 0.9, fontWeight: 700, fontSize: '1.4rem' }}>
                 {cv?.subtitle || t('cv.subtitle') || 'Professional Portfolio'}
             </p>
         </div>
         
-        <div className="cv-contact-info">
+        <div className="cv-contact-info" style={{ marginTop: '2rem' }}>
           {headerInfo.email && (
-            <div className="flex items-center gap-2 px-2">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5">
               <Mail size={18} className="text-gold" /> 
               <span>{headerInfo.email}</span>
             </div>
           )}
           {headerInfo.phone && (
-            <div className="flex items-center gap-2 px-2">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5">
               <Phone size={18} className="text-gold" /> 
               <span>{headerInfo.phone}</span>
             </div>
           )}
-          <div className="flex items-center gap-2 px-2">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5">
             <MapPin size={18} className="text-gold" /> 
             <span>{headerInfo.location}</span>
           </div>
           {headerInfo.linkedin && (
-              <a href={headerInfo.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-2 hover:text-gold transition-all duration-300">
+              <a href={headerInfo.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 hover:bg-gold/10 transition-all">
                   <LinkIcon size={18} className="text-gold" /> 
                   <span>LinkedIn</span>
               </a>
           )}
           {headerInfo.github && (
-              <a href={headerInfo.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-2 hover:text-gold transition-all duration-300">
+              <a href={headerInfo.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 hover:bg-gold/10 transition-all">
                   <ExternalLink size={18} className="text-gold" /> 
                   <span>GitHub</span>
               </a>
@@ -145,14 +146,21 @@ export default function CVView({ cv }) {
         {/* Main Column */}
         <div className="flex-col gap-8">
           {sections.filter(s => !['SKILLS', 'EXPERTISE', 'KEY SKILLS', 'مهارات', 'LANGUAGES', 'لغات'].includes(s.originalTitle)).map((section, idx) => (
-            <div key={idx} className="glass-panel" style={{ padding: '2.5rem' }}>
-              <h2 className="text-gold mb-6 flex items-center gap-3" style={{ borderBottom: '1px solid var(--panel-border)', paddingBottom: '0.75rem', unicodeBidi: 'plaintext', textAlign: 'start' }}>
-                {getIcon(section.title)}
+            <div key={idx} className={`glass-panel animate-fade-up stagger-${(idx % 3) + 1}`} style={{ padding: '3rem' }}>
+              <h2 className="text-gold mb-8 flex items-center gap-4" style={{ 
+                fontSize: '1.8rem',
+                borderBottom: '1px solid var(--panel-border)', 
+                paddingBottom: '1rem', 
+                unicodeBidi: 'plaintext', 
+                textAlign: 'start',
+                fontWeight: 800
+              }}>
+                <span style={{ color: 'var(--gold-accent)', opacity: 0.8 }}>{getIcon(section.title)}</span>
                 {section.title}
               </h2>
               <div 
                 className="rich-text-content"
-                style={{ lineHeight: '1.8', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '1.05rem' }}
+                style={{ lineHeight: '1.9', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '1.1rem' }}
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             </div>
@@ -178,31 +186,33 @@ export default function CVView({ cv }) {
             ];
 
             return (
-              <div key={idx} className="glass-panel" style={{ padding: '2rem', background: 'rgba(212, 175, 55, 0.03)' }}>
-                <h2 className="text-gold mb-4 flex items-center gap-3" style={{ fontSize: '1.5rem', unicodeBidi: 'plaintext', textAlign: 'start' }}>
+              <div key={idx} className={`glass-panel animate-fade-up stagger-${(idx % 2) + 1}`} style={{ padding: '2.5rem', background: 'rgba(212, 175, 55, 0.05)' }}>
+                <h2 className="text-gold mb-6 flex items-center gap-3" style={{ fontSize: '1.75rem', fontWeight: 800, unicodeBidi: 'plaintext', textAlign: 'start' }}>
                   {getIcon(section.title)}
                   {section.title}
                 </h2>
                 
                 {isSkills && skillTags.length > 0 ? (
-                  <div className="skill-tag-grid">
+                  <div className="skill-tag-grid" style={{ gap: '0.75rem' }}>
                     {skillTags.map((tag, tIdx) => (
                       <span 
                         key={tIdx} 
                         style={{ 
-                          padding: '0.25rem 0.4rem', 
-                          fontSize: '0.72rem', 
+                          padding: '0.4rem 0.8rem', 
+                          fontSize: '0.8rem', 
                           backgroundColor: tagColors[tIdx % tagColors.length],
-                          border: `1px solid ${tagColors[tIdx % tagColors.length].replace('0.1', '0.3')}`,
+                          border: `1px solid ${tagColors[tIdx % tagColors.length].replace('0.1', '0.2')}`,
                           color: 'var(--text-primary)',
                           borderRadius: '12px',
-                          fontWeight: '500',
+                          fontWeight: '600',
                           textAlign: 'center',
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          display: 'block'
+                          display: 'block',
+                          transition: 'transform 0.3s ease'
                         }}
+                        className="hover-scale"
                         title={tag}
                       >
                         {tag}
@@ -210,7 +220,7 @@ export default function CVView({ cv }) {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.8', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '0.95rem' }}
+                  <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.8', color: 'var(--text-secondary)', unicodeBidi: 'plaintext', textAlign: 'start', fontSize: '1rem' }}
                     dangerouslySetInnerHTML={{ __html: section.content }}
                   />
                 )}
@@ -219,12 +229,12 @@ export default function CVView({ cv }) {
           })}
 
           {/* Quick Contact Box if not in main */}
-          <div className="glass-panel" style={{ padding: '2rem', borderLeft: '3px solid var(--gold-accent)' }}>
-              <h3 className="text-gold mb-4">{isRTL ? 'معلومات التواصل' : 'Contact Details'}</h3>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.9rem' }} className="text-secondary">
-                  {headerInfo.email && <li><strong>Email:</strong> {headerInfo.email}</li>}
-                  {headerInfo.phone && <li><strong>Phone:</strong> {headerInfo.phone}</li>}
-                  <li><strong>Location:</strong> {headerInfo.location}</li>
+          <div className="glass-panel animate-fade-up stagger-3" style={{ padding: '2.5rem', borderLeft: '4px solid var(--gold-accent)', background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%)' }}>
+              <h3 className="text-gold mb-6" style={{ fontSize: '1.5rem', fontWeight: 800 }}>{isRTL ? 'معلومات التواصل' : 'Contact Details'}</h3>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.2rem', fontSize: '1rem' }} className="text-secondary">
+                  {headerInfo.email && <li className="flex items-center gap-3"><strong>Email:</strong> {headerInfo.email}</li>}
+                  {headerInfo.phone && <li className="flex items-center gap-3"><strong>Phone:</strong> {headerInfo.phone}</li>}
+                  <li className="flex items-center gap-3"><strong>Location:</strong> {headerInfo.location}</li>
               </ul>
           </div>
         </div>

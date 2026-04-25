@@ -30,53 +30,63 @@ export default function Home() {
   };
 
   return (
-    <div className="flex-col gap-8">
+    <div className="flex-col gap-12">
       {/* Hero Section */}
-      <section className="glass-panel text-center flex-col items-center gap-4 mt-8">
-        <img src="/logo.png" alt="Logo" width="100" style={{ marginBottom: '1rem' }} />
-        <h1 className="title-glow hero-title" style={{ color: 'var(--text-primary)' }}>
+      <section className="glass-panel text-center flex-col items-center gap-6 mt-8 animate-fade-up" style={{ padding: '4rem 2rem' }}>
+        <div className="animate-fade-scale stagger-1">
+           <img src="/logo.png" alt="Logo" width="120" style={{ marginBottom: '1.5rem', filter: 'drop-shadow(0 0 10px var(--gold-glow))' }} />
+        </div>
+        
+        <h1 className="title-glow hero-title animate-fade-up stagger-2" style={{ color: 'var(--text-primary)', lineHeight: 1.1 }}>
           {t('hero.welcome')}{' '}
-          <span className="text-gold">{t('hero.portal')}</span>
+          <span className="text-gold" style={{ display: 'block', marginTop: '0.5rem' }}>{t('hero.portal')}</span>
         </h1>
+        
         {/* Hero description: render as HTML if it contains tags, else plain text */}
-        {(() => {
-          const desc = t('hero.description');
-          if (desc && desc.includes('<')) {
-            return <div className="text-secondary hero-description" dangerouslySetInnerHTML={{ __html: desc }} />;
-          }
-          return <p className="text-secondary hero-description">{desc}</p>;
-        })()}
-        <div className="flex gap-4 mt-4">
-          <Link href="/articles" className="btn btn-primary">
+        <div className="animate-fade-up stagger-3" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          {(() => {
+            const desc = t('hero.description');
+            const descClasses = "text-secondary hero-description";
+            if (desc && desc.includes('<')) {
+              return <div className={descClasses} style={{ fontSize: '1.25rem' }} dangerouslySetInnerHTML={{ __html: desc }} />;
+            }
+            return <p className={descClasses} style={{ fontSize: '1.25rem' }}>{desc}</p>;
+          })()}
+        </div>
+
+        <div className="flex gap-6 mt-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <Link href="/articles" className="btn btn-primary" style={{ minWidth: '180px' }}>
             {s('hero_btn1_en', 'hero_btn1_ar', t('hero.btnArticles'))}
           </Link>
-          <Link href="/services" className="btn">
+          <Link href="/services" className="btn" style={{ minWidth: '180px' }}>
             {s('hero_btn2_en', 'hero_btn2_ar', t('hero.btnServices'))}
           </Link>
         </div>
       </section>
 
       {/* Quick Links / Highlights */}
-      <section className="responsive-grid mt-8">
-        <div className="glass-panel">
-          <h2 className="text-gold mb-4">{s('card1_title_en', 'card1_title_ar', t('sections.latestArticles'))}</h2>
-          <p className="text-secondary mb-4">{s('card1_text_en', 'card1_text_ar', t('articles.subtitle'))}</p>
-          <Link href="/articles" className="text-gold" style={{ textDecoration: 'underline' }}>
-            {s('card1_link_en', 'card1_link_ar', t('sections.browseArticles'))} &rarr;
+      <section className="responsive-grid mt-4">
+        <div className="glass-panel animate-fade-up stagger-1">
+          <h2 className="text-gold mb-4" style={{ fontSize: '1.75rem' }}>{s('card1_title_en', 'card1_title_ar', t('sections.latestArticles'))}</h2>
+          <p className="text-secondary mb-6" style={{ minHeight: '3rem' }}>{s('card1_text_en', 'card1_text_ar', t('articles.subtitle'))}</p>
+          <Link href="/articles" className="text-gold" style={{ fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            {s('card1_link_en', 'card1_link_ar', t('sections.browseArticles'))} <span style={{ fontSize: '1.2rem' }}>&rarr;</span>
           </Link>
         </div>
-        <div className="glass-panel">
-          <h2 className="text-gold mb-4">{s('card2_title_en', 'card2_title_ar', t('sections.webProjects'))}</h2>
-          <p className="text-secondary mb-4">{s('card2_text_en', 'card2_text_ar', t('projects.subtitle'))}</p>
-          <Link href="/projects" className="text-gold" style={{ textDecoration: 'underline' }}>
-            {s('card2_link_en', 'card2_link_ar', t('sections.seeProjects'))} &rarr;
+        
+        <div className="glass-panel animate-fade-up stagger-2">
+          <h2 className="text-gold mb-4" style={{ fontSize: '1.75rem' }}>{s('card2_title_en', 'card2_title_ar', t('sections.webProjects'))}</h2>
+          <p className="text-secondary mb-6" style={{ minHeight: '3rem' }}>{s('card2_text_en', 'card2_text_ar', t('projects.subtitle'))}</p>
+          <Link href="/projects" className="text-gold" style={{ fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            {s('card2_link_en', 'card2_link_ar', t('sections.seeProjects'))} <span style={{ fontSize: '1.2rem' }}>&rarr;</span>
           </Link>
         </div>
-        <div className="glass-panel text-center flex-col items-center">
-          <h2 className="text-gold mb-4">{t('sections.myServices')}</h2>
-          <p className="text-secondary mb-4">{t('services.subtitle')}</p>
-          <Link href="/services" className="text-gold" style={{ textDecoration: 'underline' }}>
-            {t('sections.viewServices')} &rarr;
+        
+        <div className="glass-panel text-center flex-col items-center animate-fade-up stagger-3">
+          <h2 className="text-gold mb-4" style={{ fontSize: '1.75rem' }}>{t('sections.myServices')}</h2>
+          <p className="text-secondary mb-6" style={{ minHeight: '3rem' }}>{t('services.subtitle')}</p>
+          <Link href="/services" className="text-gold" style={{ fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            {t('sections.viewServices')} <span style={{ fontSize: '1.2rem' }}>&rarr;</span>
           </Link>
         </div>
       </section>

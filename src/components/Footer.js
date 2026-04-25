@@ -31,12 +31,22 @@ export default function Footer() {
   const siteTitle = s('site_title_en', 'site_title_ar', t('siteTitle'));
 
   return (
-    <footer style={{ marginTop: '5rem', padding: '2rem 0', borderTop: '1px solid var(--panel-border)', textAlign: 'center', color: 'var(--text-secondary)' }}>
-      {footerText ? (
-        <p>{footerText}</p>
-      ) : (
-        <p>&copy; {new Date().getFullYear()} {siteTitle}. {t('footer.rights')}</p>
-      )}
+    <footer style={{ 
+      marginTop: '8rem', 
+      padding: '4rem 0', 
+      borderTop: '1px solid var(--panel-border)', 
+      textAlign: 'center', 
+      color: 'var(--text-secondary)',
+      fontSize: '0.9rem'
+    }}>
+      <div className="animate-fade-up">
+        {footerText ? (
+          <p style={{ marginBottom: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>{footerText}</p>
+        ) : (
+          <p style={{ marginBottom: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>&copy; {new Date().getFullYear()} {siteTitle}</p>
+        )}
+        <p style={{ opacity: 0.6 }}>{t('footer.rights')}</p>
+      </div>
     </footer>
   );
 }
