@@ -1,5 +1,4 @@
 import { sql as vercelSql } from '@vercel/postgres';
-import Database from 'better-sqlite3';
 import path from 'path';
 
 // Detection for local vs production
@@ -14,8 +13,9 @@ const sql = async (strings, ...values) => {
     return vercelSql(strings, ...values);
   }
 
-  // SQLite Fallback
+  // SQLite Fallback - Dynamic Import for native module compatibility
   if (!db) {
+    const Database = (await import('better-sqlite3')).default;
     db = new Database(path.resolve(process.cwd(), 'portfolio.db'));
   }
 
@@ -64,7 +64,10 @@ export async function initDb() {
   } else {
     // SQLite Specific Initialization (using INTEGER PRIMARY KEY AUTOINCREMENT)
     try {
-      if (!db) db = new Database(path.resolve(process.cwd(), 'portfolio.db'));
+      if (!db) {
+        const Database = (await import('better-sqlite3')).default;
+        db = new Database(path.resolve(process.cwd(), 'portfolio.db'));
+      }
       
       db.exec(`
         CREATE TABLE IF NOT EXISTS articles (

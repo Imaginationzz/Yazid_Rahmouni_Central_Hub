@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
+    "better-sqlite3": "^12.9.0",
     "jodit": "^4.12.2",
     "jodit-react": "^5.3.21",
     "jose": "^6.2.2",
