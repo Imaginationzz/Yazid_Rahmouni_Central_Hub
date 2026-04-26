@@ -54,12 +54,12 @@ export default function Home() {
           })()}
         </div>
 
-        <div className="flex gap-6 mt-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-          <Link href="/articles" className="btn btn-primary" style={{ minWidth: '180px' }}>
-            {s('hero_btn1_en', 'hero_btn1_ar', t('hero.btnArticles'))}
+        <div className="flex gap-8 mt-10 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <Link href="/articles" className="btn btn-primary" style={{ minWidth: '200px' }}>
+            {t('hero.btnArticles')}
           </Link>
-          <Link href="/services" className="btn" style={{ minWidth: '180px' }}>
-            {s('hero_btn2_en', 'hero_btn2_ar', t('hero.btnServices'))}
+          <Link href="/services" className="btn" style={{ minWidth: '200px' }}>
+            {t('hero.btnServices')}
           </Link>
         </div>
       </section>

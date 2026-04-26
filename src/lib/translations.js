@@ -15,7 +15,7 @@ const translations = {
       portal: 'Ideas That Take Flight',
       description: "Discover my articles, portfolio, projects and collections of books.",
       btnArticles: 'Read My Articles',
-      btnServices: 'View Services'
+      btnServices: 'View My Services'
     },
     sections: {
       latestArticles: 'Latest Articles',

@@ -162,6 +162,7 @@ a {
 .justify-between { justify-content: space-between; }
 .justify-center { justify-content: center; }
 .gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
 .gap-8 { gap: 2rem; }
 .mt-8 { margin-top: 2rem; }
 .mt-12 { margin-top: 3rem; }
